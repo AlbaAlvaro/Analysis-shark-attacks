@@ -15,11 +15,11 @@ df = pd.read_csv("attacks.csv", encoding='latin-1')
 
 Before cleaning the DataFrame I extracted the general information such as the number of rows and columns, the name of each column and the data types in each column. From this information I observed several things:
 
-- There are two columns (Case Number.1 and Case Number.2) that have the same name as Case Number, maybe they have the same information
+- There are two columns ("Case Number.1" and "Case Number.2") that have the same name as Case Number, maybe they have the same information
 
-- Other two columns (href and href formula) that may have similar data
+- Other two columns ("href" and "href formula") that may have similar data
 
-- Two columns called Unnamed 
+- Two columns called "Unnamed" 
 
 - There are a lot of rows which have all null data
 
@@ -27,11 +27,13 @@ Before cleaning the DataFrame I extracted the general information such as the nu
 
 First of all, I examined the data related to the previous observations, and then I revised each column to see if the data should be cleaned.
 
-I started with the Case Number columns, as there were three columns with a similar name I checked whether the columns contained the same information and as they were not equal I revised ho many entries were different from the other columns in each of them. As a result, I found that there were few entries that were different in between these columns so I deleted the columns "Case Number.1" and "Case Number.2".
+I started with the Year column where I wanted to replace the values that were 0 with the values from the Data column on those rows. Finally, I decided not to replace them because if I did it I could not work with this column afterwards in the hypothesis.
+
+Then, I revised the Case Number columns, as there were three columns with a similar name I checked whether the columns contained the same information and as they were not equal I revised ho many entries were different from the other columns in each of them. As a result, I found that there were few entries that were different in between these columns so I deleted the columns "Case Number.1" and "Case Number.2".
 
 Next, I checked the columns "href" and "href formula" to see if they had the same information or if there were only a few entries different in between the two. As I found this to be true, I deleted the column href formula in order not to have duplicates.
 
-Moreover, I revised the columns and rows with null information. I noticed that the two columns called "Unnamed" had most of their values null so I erased this two columns as they do not give significant information. The rows that had all null entries were also eliminated.
+Moreover, I revised the columns and rows with null information. I noticed that the two columns called "Unnamed" had most of their values null so I erased this two columns as they do not give significant information as well as the columns "Time" and "Age". The rows that had all null entries were also eliminated.
 
 Then, I took a look at the column "Type" and I observed that there were three names that stand for the same type of attack, so I merged all in one name. 
 
@@ -39,13 +41,13 @@ I also revised the column "Country", there is no need of cleaning in this column
 
 Then, I moved to the columns "Name" and "Sex", I observed that there were several entries in the "Name" column that belong to the "Sex" column so I first checked if the entries in both columns matched and as I could not be sure by only seen a feww entries I made the data in "Sex" be the same that the data in "Name". I also realized the "Sex" column had an empty space at the end of its name, so I deleted it.
 
-Next, I checked the fatal column, there were values refering to the same but because of the way they were written they were not recognized as the same, so I replaced them by their true values, and also replace the NaN values by UNKNOWN. I also found that there was a confusing value in this column that had the structure of a year but it did not match the year of the entry where this attack was.
+Next, I checked the fatal column, there were values refering to the same but because of the way they were written they were not recognized as the same, so I replaced them by their true values, and also replace the NaN values by UNKNOWN. I also found that there was a confusing value in this column that had the structure of a year but it did not match the year of the entry where this attack was, so I revised the other data in the column and I found out that the attack was not fatal so I changed the entry for "N".
 
 Finally, in the "Species" column I only changed its name as there was also an empty space at the end.
 
 ## Manipulation of the DataFrame
 
-The manipulation of the DataFrame was developed to confirm or refute two hypothesis: the first one was that there are less fatal attacks due to surfing than to fishing, although the number of total attacks is higher in surfing, this could be due to the fact that when fishermen are fishing are disturbing the environment of the fish including sharks, but while surfing the human is not disturbing their habitat. And the second one was that the number of attacks increases with the years but there are less fatal attacks nowadays.
+The manipulation of the DataFrame was developed to confirm or refute three hypothesis: the first one was that there are less fatal attacks due to surfing than to fishing, although the number of total attacks is higher in surfing, this could be due to the fact that when fishermen are fishing are disturbing the environment of the fish including sharks, but while surfing the human is not disturbing their habitat. The second one was that the number of attacks increases with the years but there are less fatal attacks nowadays.; and the third one was that there are more attacks on the coast facing the Pacific Ocean in Australia.
 
 For the first hypothesis, I checked the number of attacks while surfing and while fishing, the number was higher while surfing. I also plotted a graph to show whether the majority of the attacks are fatal or not, as a result I obtained that the majority were non fatal attacks.
 
@@ -62,6 +64,10 @@ Then, I revised the number of fatal attacks while surfing and while fishing. For
 For the second hypothesis, I created a new set of data without the years that were below 1500 as the other years were 0 in the DataFrame. Then, I plotted a graph showing the attacks each 20 years, depending on if they were fatal or not.
 
 ![attacks_fatal](C:\Users\34676\Pictures\year_fatal)
+
+Finally, for the third hypothesis, I counted the attacks on each area of Australia, and I protted a graph showing them.
+
+![australia_attacks](C:\Users\34676\Pictures\australis_attacks)
 
 ## Exporting of the DataFrame
 
